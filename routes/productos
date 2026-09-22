@@ -1,0 +1,18 @@
+import Router from 'express';
+import class productosModel from '../models/producto';
+export const productosRouter = Router.Router();
+
+productosRouter.get("/productos", async (_req: Express.Request, res: Express.Response) => {
+    const productos = await productosModel.getAll();
+    res.json(productos);
+});
+
+productosRouter.get("/productos/:id", (_req: Express.Request, res: Express.Response) => {   },
+
+productosRouter.post("/productos", (_req: Express.Request, res: Express.Response) => {  },
+
+productosRouter.put("/productos/:id", (_req: Express.Request, res: Express.Response) => {  },
+
+productosRouter.delete("/productos/:id", (_req: Express.Request, res: Express.Response) => {  },    
+
+productosRouter.patch("/productos/:id", (_req: Express.Request, res: Express.Response) => {  }
