@@ -10,7 +10,7 @@ export interface Producto {
 const productos = readjson('productos.json');
 
 export class productosModel {
-    static getAll() {
+    static async getAll() {
         return productos;
     }
 
@@ -19,10 +19,23 @@ export class productosModel {
         return producto
     }
 
-    static async create(producto: { nombre: string; precio: number; descripcion: string; }) {
+    static async create({input}) {
         const newProducto = {
             id: productos.length + 1,
-            ...producto
+            ...input
         }
-            productos.push(newProducto);
+         productos.push(newProducto);
+         return newProducto;
+        }
+
+    static async delete({id}: {id: number}) {
+        const productoIndex = productos.findIndex((p: { id: number }) => p.id === id);  
+        if (productoIndex !== -1) return false
+        productos.splice(productoIndex, 1);
+        return true;
+
+    }
+
+    static async update(id: number, input: Partial<Producto>) {
+
     }
